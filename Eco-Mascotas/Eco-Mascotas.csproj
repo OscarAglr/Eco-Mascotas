@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Eco_Mascotas-ec9b4788-d314-4e52-b983-03803b532635</UserSecretsId>
     <RootNamespace>Eco_Mascotas</RootNamespace>
@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>
