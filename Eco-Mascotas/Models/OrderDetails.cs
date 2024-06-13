@@ -13,8 +13,10 @@ namespace Eco_Mascotas.Models
 
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
-        [ForeignKey("PorductId")]
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
 
     }
 }
