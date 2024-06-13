@@ -46,9 +46,11 @@ body {
     background-image: url(../Images/dog_bg.png);
     background-size: cover;
     height: calc(100% + 50px);
+    width: 100%;    
 }
 
 .contenedorSeccion {
+    background-color: rgba(24, 129, 97, 0.63);
     margin: 10px 0 10px;
     display: flex;
     position: relative;
@@ -66,4 +68,43 @@ body {
         background-size: 100% 100%;
         height: 600px;
     }
+}
+
+nav.navbar {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    background-color: #50cfbe;
+    font-size: 16px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.nav-buttons {
+    margin-right: 10px;
+    margin-left: 10px;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+}
+
+.page-name {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Lilita One', cursive;
+    font-style: italic;
+    -webkit-text-stroke: black;
+    -webkit-text-stroke-width: 1px;
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Lilita One';
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 0px 5px 5px #00000082;
 }

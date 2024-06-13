@@ -11,11 +11,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Product Type</th>
-                <th>Color</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
                 <th></th>
             </tr>
         </thead>
@@ -31,7 +32,7 @@
                     <td>@item.Category.CategoryName</td>
                     <td>@item.Description</td>
                     <td>
-                        <a asp-area="Customer" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
+                        <a asp-area="Client" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
