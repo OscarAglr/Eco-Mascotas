@@ -52,6 +52,8 @@ namespace Eco_Mascotas.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
+
                 if (image != null)
                 {
                     var name = Path.Combine(_he.WebRootPath + "/Images/", Path.GetFileName(image.FileName));
@@ -121,12 +123,18 @@ namespace Eco_Mascotas.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            
+
             var product = _db.Products.Include(c => c.Category).Include(c => c.Tag)
                 .FirstOrDefault(Tag => Tag.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
+
+            ViewData["CategoryId"] = new SelectList(_db.Categories.ToList(), "Id", "CategoryName");
+            ViewData["TagId"] = new SelectList(_db.Tags.ToList(), "Id", "TagName");
+
             return View(product);
         }
 
@@ -146,6 +154,8 @@ namespace Eco_Mascotas.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["CategoryId"] = new SelectList(_db.Categories.ToList(), "Id", "CategoryName");
+            ViewData["TagId"] = new SelectList(_db.Tags.ToList(), "Id", "TagName");
             return View(product);
         }
         //POST Delete Action Method

@@ -31,7 +31,7 @@
 </form>
 <br />
 <div>
-    <table class="table table-striped border" id="productTable">
+    <table class="table table-striped border" id="productTable" style="width:100%">
         <thead>
             <tr class="table-info">
                 <th>
@@ -75,17 +75,23 @@
     </table>
 </div>
 @section scripts {
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/r-3.0.2/datatables.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'pageLength', 'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+        
+        let table = new DataTable('#productTable', {
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            layout: {
+                topStart: 'buttons'
+            }
         });
+
         $(function () {
             var save = '@TempData["save"]'
             if (save != '') {
