@@ -1,9 +1,9 @@
 ﻿﻿@using Eco_Mascotas.Models;
 @using X.PagedList.Mvc.Core;
-
 @model X.PagedList.IPagedList<Product>
 @{
     ViewData["Title"] = "Home Page";
+    var products = Model.ToList().Take(3);
 }
 <br/><br/>
 <div id="fondoSeccionBienvenida" class="fondoSeccion">
@@ -12,36 +12,71 @@
         <div class="contenedorObjetos" id="objetosInicio">
             <p>
                 ¡Bienvenido a nuestra tienda de productos ecológicos para mascotas!
-                Encuentra todo lo que necesitas para consentir a tus compañeros peludos 
+                Encuentra todo lo que necesitas para consentir a tus mascotas 
                 mientras cuidas nuestro planeta. ¡Compra con conciencia ambiental!
             </p>
         </div>
     </div>
 </div>
-<div class="row">
-    @*
-    @foreach (var product in Model)
-    {
-        <div class="col-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px;color: steelblue">@product.Name</label>
-                    </h4>
-                </div>
-                <img src="~/@product.Image" alt="Card Image" class="card-img-top" style="height: 300px;"/>
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <label style="font-size: 20px;color: #a51313"><b>Price : @product.Price</b></label>
-                        </div>
-                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Deatils</a>
-                    </div>
+<div class="container2">
+    <br />
+    <div class="row">
+        <div class="col-md-4 mb-5 logo-div">
+            <img src="@Url.Content("~/Images/logo.jpg")" alt="Card Image" style="width:25vh; height:25vh;" />
+        </div>
+        <div class="col-md-8 mb-5">
+            <h2>¿Quiénes somos?</h2>
+            <hr />
+            <p>
+                "Eco-mascotas" no es una simple plataforma en línea; es un punto de encuentro para aquellos que buscan productos de alta calidad para sus mascotas,
+                fabricados con materiales ecológicos. Desde alimentos orgánicos hasta juguetes reciclados, donde se ofrece una amplia gama de productos que satisfacen
+                las necesidades de tu mascota sin afectar negativamente al planeta donde vive.
+            </p>
+            <p>
+                En línea con los principios de la economía circular, "Eco-mascotas" se compromete a promover la reutilización,
+                el reciclaje y la reducción de residuos en todas las etapas de producción y consumo. Cada compra realizada a
+                través de nuestra plataforma contribuye no solo al bienestar de tu mascota, sino también a la preservación del medio ambiente,
+                fomentando un sistema más equitativo y sostenible.
+            </p>
+        </div>
+    </div>
+    <div class="row center">
+        <h2>Productos destacados</h2>
+        @foreach (var product in products)
+        {
+            <div class="card col-md-4" style="width: 18rem;">
+                <img src="~/@product.Image" class="card-img-top" alt="@product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Ver detalles</a>
                 </div>
             </div>
-        </div>
-    }*@
-</div>
-<div>
-    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c), PagedListRenderOptions.PageNumbersOnly)
+
+        }
+        
+    </div>
+    <br /><br />
+    <div class="row providers">
+        <h2>Nuestros proveedores</h2>
+        <div class="col-md-3">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/Images/beco.jpeg" role="img"
+                 aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h3>Beco</h3>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-3">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/Images/cycledog.jpg" role="img"
+                 aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h3>Cycle Dog</h3>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-3">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/Images/dasa.jpg" role="img"
+                 aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h3>Reciclajes DASA</h3>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-3">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/Images/biobites.png" role="img"
+                 aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h3>Bio Bites</h3>
+        </div><!-- /.col-lg-4 -->
+    </div>
 </div>

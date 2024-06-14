@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Eco_Mascotas.Models;
+using Newtonsoft.Json;
 
 namespace Eco_Mascotas.Utility
 {
@@ -15,6 +16,14 @@ namespace Eco_Mascotas.Utility
 
             return value == null ? default(T) :
                 JsonConvert.DeserializeObject<T>(value);
+        }
+
+        public static Dictionary<Product, T> GetDictionary<T>(this ISession session, Product key)
+        {
+            var value = session.GetString(key.ToString());
+
+            return value == null ? new Dictionary<Product, T>() :
+                JsonConvert.DeserializeObject<Dictionary<Product, T>>(value);
         }
     }
 }

@@ -26,6 +26,11 @@ namespace Eco_Mascotas.Areas.Client.Controllers
             return View(_db.Products.Include(c => c.Category).Include(c => c.Tag).ToList().ToPagedList(page ?? 1, 9));
         }
 
+        public IActionResult ProductPage(int? page)
+        {
+            return View(_db.Products.Include(c => c.Category).Include(c => c.Tag).ToList().ToPagedList(page ?? 1, 9));
+        }
+
         public IActionResult Privacy()
         {
             return View();

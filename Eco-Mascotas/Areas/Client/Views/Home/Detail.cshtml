@@ -1,6 +1,9 @@
 ﻿@using Eco_Mascotas.Models;
+
 @model Product
+
 @{
+    
     ViewData["Title"] = "Details";
 
 }
@@ -22,96 +25,41 @@
 
 <br />
 
-<h2 class="text-info">Product Details</h2>
+<h2 class="text-info">Detalles Del Producto</h2>
 <form asp-action="Detail" method="post" enctype="multipart/form-data">
-    <div class="p-4 rounded border row">
-        <div asp-validation-summary="ModelOnly" class="text-danger">
-
-        </div>
-        <div class="col-8">
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Name"></label>
-                </div>
-                <div class="col-8">
-                    <input type="hidden" asp-for="Id" />
-                    <input asp-for="Name" readonly="readonly" class="form-control" />
-                </div>
-                <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/@Model.Image" alt="Product Image" class="img-fluid mb-3">
             </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Price"></label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Price" readonly="readonly" class="form-control" />
-                </div>
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            @*<div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Image"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Image" class="form-control" type="file" />
-                    </div>
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                </div>*@
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Description"></label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Description" readonly="readonly" readonly="readonly" class="form-control" />
-                </div>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="CategoryId"></label>
-                </div>
-                <div class="col-8">
-                    @*<select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>*@
-                    <input asp-for="Category.CategoryName" readonly="readonly" class="form-control" />
-                </div>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-4">
-
-                </div>
-                <div class="col-8">
-                    @if (product != null)
+            <div class="col-md-6">
+                <h2 class="text-info">@Model.Name</h2>
+                <div class="review-stars mb-3">
+                    @for (int i = 0; i < 5; i++)
                     {
-                        <button type="submit" class="btn btn-danger form-control" asp-action="Remove" asp-route-id="@Model.Id">Remove to Cart</button>
+                        <span>&#9733;</span>
                     }
-                    else
-                    {
-                        <input type="submit" class="btn btn-info form-control" value="Add to Cart" />
-                    }
-                    
+                    <span class="ml-2">(10 reviews)</span>
                 </div>
-
-            </div>
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-success">Back to List</a>
+                <p class="text-muted">$@Model.Price</p>
+                <p>@Model.Description</p>
+                <div class="form-group row mt-4">
+                    <div class="col-6">
+                        @if (product != null)
+                        {
+                            <button type="submit" class="btn btn-danger w-100" asp-action="Remove" asp-route-id="@Model.Id">Eliminar</button>
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-info w-100" value="Agregar al carrito" />
+                        }
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-success w-100">Volver</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-3">
-            <img src="~/@Model.Image" width="100%" height="250px" style="border-radius: 5px;border: 1px solid #efefef" />
-            @if (Model.Stock > 0)
-            {
-                <img src="~/Images/instock-logo.png" width="200px" height="50px" />
-            }
-            else
-            {
-                <img src="~/Images/notinstock.jpg" width="200px" height="50px" />
-            }
-
-        </div>
-
     </div>
 </form>
 
